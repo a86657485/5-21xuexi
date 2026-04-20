@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Libre Baskerville', serif;
+}
+
+:root {
+  --bg: #F9F8F6;
+  --surface: #FFFFFF;
+  --surface-2: #F3F1EC;
+  --ink: #171717;
+  --ink-2: #525252;
+  --ink-3: #A3A3A3;
+  --gold: #F97316;
+  --gold-bg: #FFEDD5;
+  --gold-border: #FDBA74;
+  --jade: #15803D;
+  --jade-bg: #DCFCE7;
+  --jade-border: #4ADE80;
+  --sky: #1D4ED8;
+  --sky-bg: #DBEAFE;
+  --vermillion: #B91C1C;
+  --vermillion-bg: #FEE2E2;
+  --purple: #6D28D9;
+  --purple-bg: #EDE9FE;
+
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+h1, h2, h3 { 
+  font-family: var(--font-serif); 
+  font-weight: 700; 
+  line-height: 1.2; 
+}
+
+/* Base custom classes to match original feel easily */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.75rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  cursor: pointer; border: 1px solid transparent;
+  transition: var(--transition);
+  text-decoration: none;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--ink); color: white;
+  border-color: var(--ink); box-shadow: none;
+}
+.btn-primary:hover { background: transparent; color: var(--ink); transform: translateY(-2px); box-shadow: none; }
+
+.btn-gold {
+  background: var(--gold); color: white; border-color: var(--gold); box-shadow: none;
+}
+.btn-gold:hover { background: transparent; color: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+
+.btn-jade {
+  background: var(--jade); color: white; border-color: var(--jade); box-shadow: none;
+}
+.btn-jade:hover { background: transparent; color: var(--jade); border-color: var(--jade); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn-outline:hover { background: var(--ink); color: white; }
+
+.btn-lg { padding: 14px 32px; font-size: 0.85rem; border-radius: var(--radius-md); }
+.btn-sm { padding: 8px 16px; font-size: 0.7rem; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
+
+/* Custom Sliders */
+.custom-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px;
+  background: var(--surface-2);
+  border-radius: 0px; outline: none;
+  cursor: pointer;
+}
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 0%;
+  background: var(--ink);
+  cursor: grab; transition: transform 0.2s;
+}
+.custom-slider::-webkit-slider-thumb:active { transform: scale(1.3); cursor: grabbing; }
+
+/* Flowchart Nodes */
+.fc-node { cursor: pointer; }
+.fc-node rect, .fc-node ellipse, .fc-node polygon { transition: all 0.4s ease; rx: var(--radius-sm); ry: var(--radius-sm); }
+.fc-node.active rect { fill: var(--gold-bg) !important; stroke: var(--gold) !important; stroke-width: 2 !important; }
+.fc-node.active ellipse { fill: var(--jade-bg) !important; stroke: var(--jade) !important; stroke-width: 2 !important; }
+.fc-node.active polygon { fill: var(--sky-bg) !important; stroke: var(--sky) !important; stroke-width: 2 !important; }
+.fc-node.active text { fill: var(--ink) !important; font-weight: bold; }
+.fc-node.done rect { fill: var(--surface-2) !important; stroke: var(--ink-3) !important; }
+.fc-node.done ellipse { fill: var(--surface-2) !important; stroke: var(--ink-3) !important; }
+
+/* Code Blocks */
+.code-block {
+  background: #171717;
+  color: #D4D4D4;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85rem; line-height: 1.8;
+  overflow: auto;
+}
+.code-line { display: block; padding: 2px 8px; border-radius: var(--radius-sm); transition: background 0.3s; border-left: 2px solid transparent; }
+.code-line.active { background: rgba(255, 255, 255, 0.1); border-left: 2px solid var(--gold); }
+.code-exec-line {
+  display: block; padding: 3px 8px;
+  border-radius: var(--radius-sm); transition: background 0.3s;
+  border-left: 3px solid transparent;
+  font-size: 0.85rem;
+}
+.code-exec-line.exec { background: rgba(255, 255, 255, 0.1); border-left-color: var(--gold); }
+.code-exec-line.done { background: rgba(255, 255, 255, 0.05); border-left-color: #525252; }
+
+.kw { color: #569CD6; }
+.fn { color: #DCDCAA; }
+.str { color: #CE9178; }
+.num { color: #B5CEA8; }
+.cm { color: #6A9955; font-style: italic; }
+.var { color: #9CDCFE; }
+
+/* Data Tables */
+.data-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.data-table th {
+  background: var(--surface-2); color: var(--ink);
+  padding: 12px 16px; font-weight: 600;
+  font-family: var(--font-sans);
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+  text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem;
+}
+.data-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+.data-table th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+.data-table td {
+  padding: 10px 16px; text-align: center;
+  border-bottom: 1px solid var(--surface-2);
+  transition: all 0.4s ease;
+}
+.data-table tr:hover td { background: var(--surface); }
+.data-table tr.highlight td {
+  background: var(--jade-bg) !important;
+  color: var(--jade);
+  font-weight: 700;
+  border-bottom-color: var(--jade-border);
+}
+
