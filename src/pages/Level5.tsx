@@ -4,6 +4,7 @@ import { useAudio } from "../lib/audio";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router-dom";
 import { useAITutor } from "../lib/AITutorContext";
+import CageVisualizer from "../components/CageVisualizer";
 
 export default function Level5() {
   const { completeLevel, resetProgress, stars } = useProgress();
@@ -163,7 +164,7 @@ export default function Level5() {
     <div className="container max-w-5xl mx-auto px-6 py-12">
       <div className="text-center mb-16 flex flex-col items-center" style={{ animation: 'fadeIn 0.6s ease forwards' }}>
         <div className="inline-flex items-center gap-1.5 bg-neutral-900 text-white px-3 py-1 text-[10px] uppercase tracking-widest font-bold mb-5 font-mono">
-          [05] PROGRAM VERIFICATION
+          [05] 程序验证
         </div>
         <h1 className="text-5xl font-serif font-bold text-neutral-900 mb-3 italic tracking-tighter">程序验证</h1>
         <div className="w-12 h-[1px] bg-neutral-400 mx-auto my-5"></div>
@@ -174,11 +175,21 @@ export default function Level5() {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className="mb-8"
+      >
+        <CageVisualizer chickens={a} rabbits={b} />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16 border-t border-neutral-300 pt-12"
       >
         <div className="bg-white border border-neutral-200 p-8 shadow-sm">
           <div className="flex justify-between items-baseline mb-4 border-b border-neutral-300 pb-2">
-            <h2 className="mb-2 text-2xl font-serif font-bold italic">▶ 运行原题程序 Execute</h2>
+            <h2 className="mb-2 text-2xl font-serif font-bold italic">▶ 运行原题程序</h2>
             <span className="text-[10px] font-mono text-[#F97316] uppercase tracking-widest">Live Script</span>
           </div>
           <p className="text-[0.9rem] text-neutral-600 mb-5 leading-relaxed font-sans mt-2">
@@ -203,18 +214,18 @@ export default function Level5() {
             disabled={running}
           >
             <span className="text-[1.1rem]">▶</span>
-            <span>运行程序 INITIALIZE EXECUTION</span>
+            <span>运行程序</span>
           </button>
         </div>
 
         <div className="flex flex-col gap-6">
           <div className="bg-white border border-neutral-200 p-8 shadow-sm">
             <div className="flex justify-between items-baseline mb-4 border-b border-neutral-300 pb-2">
-              <h2 className="mb-2 text-2xl font-serif font-bold italic">📺 程序输出 Output</h2>
+              <h2 className="mb-2 text-2xl font-serif font-bold italic">📺 程序输出</h2>
               <span className="text-[10px] font-mono text-[#1D4ED8] uppercase tracking-widest">Stdout</span>
             </div>
             <div className="bg-[#171717] rounded-none p-6 font-mono text-[0.95rem] min-h-[140px] border border-neutral-900 border-l-4 border-l-[#1D4ED8] shadow-inner">
-              {!running && !programDone && <span className="text-neutral-500 uppercase tracking-widest text-[10px]">Awaiting execution...<span className="animate-pulse">▋</span></span>}
+              {!running && !programDone && <span className="text-neutral-500 uppercase tracking-widest text-[10px]">等待执行...<span className="animate-pulse">▋</span></span>}
               <div className="text-[#4ADE80] leading-loose">{out1}</div>
               <div className="text-[#4ADE80] leading-loose">{out2}</div>
             </div>
@@ -222,12 +233,12 @@ export default function Level5() {
 
           <div className="bg-white border border-neutral-200 p-8 shadow-sm">
              <div className="flex justify-between items-baseline mb-4 border-b border-neutral-300 pb-2">
-              <h3 className="mb-2.5 font-serif font-bold text-xl italic">🔄 执行过程 Execution Progress</h3>
+              <h3 className="mb-2.5 font-serif font-bold text-xl italic">🔄 执行进度</h3>
             </div>
             
             <div className="bg-[#F9F8F6] border border-neutral-200 p-5 mt-2">
               <div className="flex justify-between text-[10px] text-neutral-500 font-bold uppercase tracking-widest mb-2 font-mono">
-                <span>Iterations</span><span>[{iter}]</span>
+                <span>迭代次数</span><span>[{iter}]</span>
               </div>
               <div className="h-[4px] bg-neutral-200 overflow-hidden">
                 <div 
@@ -240,9 +251,9 @@ export default function Level5() {
               </div>
               <div className="mt-4 text-[11px] font-mono uppercase tracking-widest">
                 {!running && !programDone ? (
-                  <span className="text-neutral-400">Thread idle</span>
+                  <span className="text-neutral-400">线程空闲</span>
                 ) : programDone ? (
-                  <span className="text-[#15803D] font-bold">✅ Completed: {iter} iterations</span>
+                  <span className="text-[#15803D] font-bold">✅ 完成: {iter} 次迭代</span>
                 ) : (
                   <span className="text-[#1D4ED8] font-bold">I={iter} | a={a} | b={b} | c={c}</span>
                 )}
@@ -251,15 +262,15 @@ export default function Level5() {
 
             <div className="grid grid-cols-3 gap-1 mt-6 bg-neutral-200 border border-neutral-300 p-1">
               <div className="bg-white px-2 py-4 text-center">
-                <div className="text-[10px] text-neutral-400 font-bold font-mono tracking-widest mb-1.5 hidden md:block">Var[a]</div>
+                <div className="text-[10px] text-neutral-400 font-bold font-mono tracking-widest mb-1.5 hidden md:block">变量[a]</div>
                 <div className="text-[2rem] font-bold font-serif transition-colors text-[#F97316] italic leading-none">{a}</div>
               </div>
               <div className="bg-white px-2 py-4 text-center">
-                <div className="text-[10px] text-neutral-400 font-bold font-mono tracking-widest mb-1.5 hidden md:block">Var[b]</div>
+                <div className="text-[10px] text-neutral-400 font-bold font-mono tracking-widest mb-1.5 hidden md:block">变量[b]</div>
                 <div className="text-[2rem] font-bold font-serif transition-colors text-[#15803D] italic leading-none">{b}</div>
               </div>
               <div className="bg-white px-2 py-4 text-center">
-                <div className="text-[10px] text-[#1D4ED8] font-bold font-mono tracking-widest mb-1.5 hidden md:block">Eval[c]</div>
+                <div className="text-[10px] text-[#1D4ED8] font-bold font-mono tracking-widest mb-1.5 hidden md:block">求值[c]</div>
                 <div className="text-[2rem] font-bold font-serif transition-colors text-neutral-900 italic leading-none">{c === null ? '—' : c}</div>
               </div>
             </div>
@@ -277,12 +288,12 @@ export default function Level5() {
           >
             <div className="bg-white border-2 border-neutral-900 p-8 shadow-[8px_8px_0_0_#171717] md:p-12 relative">
               <div className="absolute top-0 right-0 bg-neutral-900 text-white px-3 py-1 font-mono text-[10px] font-bold tracking-widest border-b-2 border-l-2 border-neutral-900 shadow-[-4px_4px_0_0_#F97316]">
-                FINAL CHALLENGE
+                最终挑战
               </div>
               <div className="flex items-center gap-4 mb-6">
                 <span className="text-[3rem]">🏆</span>
                 <div>
-                  <h2 className="mb-1 text-2xl font-bold font-serif italic">挑战题 Challenge</h2>
+                  <h2 className="mb-1 text-2xl font-bold font-serif italic">挑战题</h2>
                   <span className="inline-block bg-[#FDBA74] text-neutral-900 uppercase font-mono tracking-widest font-bold text-[10px] px-2 py-1">韩信点兵</span>
                 </div>
               </div>
@@ -322,7 +333,7 @@ export default function Level5() {
                   </div>
                   <div className="text-center mt-8">
                     <button className="btn btn-primary btn-lg w-full max-w-sm" onClick={handleCompleteAll}>
-                      <span>🎉 完成所有关卡 COMPLETE</span>
+                      <span>🎉 完成所有关卡</span>
                     </button>
                   </div>
                 </motion.div>
@@ -344,8 +355,8 @@ export default function Level5() {
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#F97316] via-[#15803D] to-[#1D4ED8]" />
               
               <div className="text-center mb-10">
-                <div className="text-[10px] text-neutral-400 font-mono tracking-[0.3em] uppercase mb-4">Module Complete</div>
-                <h2 className="text-5xl font-serif text-neutral-900 mb-4 font-bold italic tracking-tighter">本课知识地图 <br className="md:hidden" />Knowledge Map</h2>
+                <div className="text-[10px] text-neutral-400 font-mono tracking-[0.3em] uppercase mb-4">全部完成</div>
+                <h2 className="text-5xl font-serif text-neutral-900 mb-4 font-bold italic tracking-tighter">本课知识地图 <br className="md:hidden" /></h2>
                 <p className="text-neutral-500 text-[13px] font-sans">
                   你已经掌握了从数学到算法的完整链路！
                 </p>
@@ -402,7 +413,7 @@ export default function Level5() {
                 <p className="text-neutral-500 text-sm uppercase tracking-widest mb-10 font-bold">你已掌握鸡兔同笼的算法思维与编程方法</p>
                 
                 <div className="flex gap-4 justify-center flex-wrap">
-                  <Link to="/" className="btn btn-primary btn-lg">Return Home 退回主页</Link>
+                  <Link to="/" className="btn btn-primary btn-lg">退回主页</Link>
                   <button 
                     className="btn btn-outline btn-lg" 
                     onClick={() => {
@@ -410,7 +421,7 @@ export default function Level5() {
                       window.location.href = '/';
                     }}
                   >
-                    Reset & Restart 重新探究
+                    重新探究
                   </button>
                 </div>
               </div>

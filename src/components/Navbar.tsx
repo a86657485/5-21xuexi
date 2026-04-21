@@ -58,7 +58,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-[#F97316] font-mono">
-        <span>STARS: {stars}/5</span>
+        <span>成就星: {stars}/5</span>
       </div>
     </nav>
   );

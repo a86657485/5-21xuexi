@@ -92,7 +92,7 @@ export function AITutorProvider({ children }: { children: ReactNode }) {
             <div className="bg-neutral-900 text-white p-3 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#F97316]" />
-                <span className="font-serif italic font-bold">AI导师 Tutor</span>
+                <span className="font-serif italic font-bold">AI导师</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="text-neutral-400 hover:text-white"><X className="w-5 h-5"/></button>
             </div>
@@ -137,7 +137,7 @@ export function AITutorProvider({ children }: { children: ReactNode }) {
               className="bg-white max-w-lg w-full p-8 border-t-4 border-[#15803D] shadow-2xl relative"
             >
               <div className="absolute top-0 right-0 bg-neutral-900 text-white font-mono text-[10px] tracking-widest px-2 py-1">
-                LEVEL GUIDE
+                关卡引导
               </div>
               <div className="flex gap-4 mb-6 items-start">
                 <div className="w-12 h-12 bg-[#DCFCE7] rounded-none flex items-center justify-center text-[#15803D] border border-[#4ADE80] shrink-0">

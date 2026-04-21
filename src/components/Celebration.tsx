@@ -22,7 +22,7 @@ export default function Celebration() {
             className="w-full max-w-md bg-white p-12 text-center border-t-4 border-t-[#F97316] shadow-2xl relative"
           >
             <div className="absolute top-0 right-0 bg-neutral-900 text-white font-mono text-[10px] tracking-widest px-2 py-1">
-              ACHIEVEMENT UNLOCKED
+              成就解锁
             </div>
 
             <motion.div 
@@ -55,7 +55,7 @@ export default function Celebration() {
               onClick={hideCelebration}
               className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 hover:text-neutral-900 transition-colors"
             >
-              再看看 REVIEW
+              再看看
             </button>
           </motion.div>
         </motion.div>

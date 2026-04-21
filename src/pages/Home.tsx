@@ -40,7 +40,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-5 flex items-center gap-3 font-sans text-[10px] tracking-[0.2em] font-bold text-neutral-500 uppercase overflow-hidden">
-              <span className="shrink-0 tracking-widest">System Analysis · Mod 21</span>
+              <span className="shrink-0 tracking-widest">系统分析 · Mod 21</span>
               <div className="h-[1px] w-full bg-neutral-300"></div>
             </div>
             
